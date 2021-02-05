@@ -1,5 +1,5 @@
 @font-face {
-    src: url("./src/assets//NotoSansKR-Regular.otf");
+    src: url("/src/assets//NotoSansKR-Regular.woff2") format('woff2');
     font-family: 'Noto Sans KR'
 }
 
@@ -313,6 +313,15 @@ h1, h2, h3, h4, h5, h6 {
     text-align: left;
     margin-top: 0.5rem;
     margin-left: 0.5rem;
+}
+
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
 }
 @media screen and (max-width: 1200px) and (orientation: portrait) {
 

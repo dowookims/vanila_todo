@@ -10,6 +10,7 @@ class App {
 }
 
 const loading = document.createElement('div');
+loading.className = 'loading';
 loading.innerHTML = 'loading....';
 document.body.append(loading);
 window.onload = () => {
