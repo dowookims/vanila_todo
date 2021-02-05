@@ -1,0 +1,354 @@
+@font-face {
+    src: url("./src/assets//NotoSansKR-Regular.otf");
+    font-family: 'Noto Sans KR'
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: 'Noto Sans KR';
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 18px;
+}
+
+#app {
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #efefef;
+}
+
+.todo-header {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+}
+
+.todo-input-page {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-username-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-input-page label {
+    transition: transform 0.3s ease;
+    transform: translate(10px, 30px);
+    color: #333;
+}
+
+.todo-input-page label.name-input-clicked {
+    transform: translate(10px, -30px);
+    color: #fff;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.input-name {
+    width: 50vw;
+    font-size: 2em;
+    padding: 20px;
+    border: none;
+    box-shadow: 2px 2px 2px 3px #fff, 2px -2px 5px 3px #fff, -2px 2px 2px 3px #fff, -2px -2px 2px 2px #fff;
+}
+
+.input-name:focus {
+    outline: none;
+}
+
+.input-name::placeholder {
+    color: #fff;
+}
+
+.end-user-input {
+    margin-top: 20px;
+}
+
+.todo-today {
+    width: 50%;
+    margin-left: 25%;
+    height: calc(100vh - 4rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.todo-today-title-div {
+    width: 60%;
+    border-radius: 15px;
+    padding: 1em;
+    margin: 0.75em 0 1em 0;
+    box-shadow: 2px 5px 5px 3px #e8e8e8, 2px -5px 5px 3px #e8e8e8, -2px 5px 5px 3px #e8e8e8, -2px -5px 5px 3px #e8e8e8;
+    border: 2px solid #333;
+    text-align: center;
+}
+
+.todo-today-title-div h2 {
+    font-size: 2rem;
+}
+
+.high-light-text {
+    color: rgba( 144, 144, 144, 0.6);
+    cursor: pointer;
+}
+
+.high-light-text:hover {
+    color: rgba(122, 122, 122, 0.9);
+}
+
+.hide {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hide {
+    display: none;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 33, 33, 0.7);
+    position: absolute;
+}
+
+.modal .content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 30%;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.modal-header {
+    height: 20px;
+}
+
+.modal-body {
+    margin-top: 1.25rem;
+    padding: 1.25rem 1rem;
+}
+
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form input {
+    padding: .7rem;
+    outline: none;
+    border: 2px solid rgba( 144, 144, 144, 0.6);
+}
+
+.modal-form input:focus {
+    border-color: #111;
+}
+
+.modal-form-buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-form-buttons button {
+    padding: 0.4rem 1.5rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+}
+
+.save-button {
+    background-color: #333;
+    color: #fff;
+}
+
+.save-button:hover {
+    background-color: #111;
+}
+
+.exit-button {
+    background-color: #fff;
+    border: 3px solid #333;
+    color: #333;
+}
+
+.exit-button:hover {
+    border-color:#bbb;
+    background-color: #bbb;
+    color: #fff;
+}
+
+.modal-body form input {
+    margin-top: 1.25rem;
+}
+
+.exit {
+    position: absolute;
+    top: 0.75rem;
+    right: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.6s ease-in;
+}
+
+.exit:hover {
+    transform: rotate(180deg);
+}
+
+.todo-today-hastodo {
+    width: 60%;
+}
+
+.todo-hastodo-header {
+    text-align: right;
+}
+
+.todo-hastodo-header span {
+    color: rgb(232, 188, 132);
+    cursor: pointer;
+}
+
+.todo-daily {
+    width: 100%;
+    margin-top: 1rem;
+    border: 2px solid rgba( 144, 144, 144, 0.6);
+    padding: 1rem;
+    transition: all 0.4s ease-in;
+}
+
+.todo-daily.done {
+    background-color: #bbb;
+    transition: all 0.4s ease-in;
+}
+
+.todo-daily-title {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.todo-daily.done .todo-daily-title .todo-title-span {
+    text-decoration:line-through;
+    color: #ddd;
+    transition: all 0.4s ease-in;
+}
+
+.todo-daily-title input {
+    display: none;
+}
+
+.todo-daily-title input:checked {
+    display: none;
+}
+
+.todo-daily-title input + label {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin-right: 0.75rem;
+}
+
+
+.todo-daily-title input:checked + label {
+    border: none;
+    transform: translateY(0);
+}
+.todo-daily-title input:checked + label::after{
+    color: rgb(242,  77, 61);
+    content: "\2713";
+}
+
+.todo-remove-btn {
+    position: absolute;
+    right: 0;
+    font-size: 0.5rem;
+    transform: trnaslateY(0.5rem);
+}
+
+.todo-daily-description {
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.23);
+}
+
+.error {
+    color: red;
+    font-size: 0.75rem;
+    text-align: left;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+}
+@media screen and (max-width: 1200px) and (orientation: portrait) {
+
+}
+
+@media screen and (max-width: 992px) and (orientation: portrait) {
+    .todo-today {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .todo-today {
+        width: 100%;
+        margin: 0;
+    }
+    .input-username-form {
+        width: 100%;
+    }
+    .input-name {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:576px) and (orientation: portrait) {
+    .input-username-form {
+        width: 100%;
+    }
+
+    .input-name {
+        width: 90%;
+    }
+
+    .todo-today {
+        width: 100%;
+        margin: 0;
+    }
+}
