@@ -166,7 +166,7 @@ export class Daily {
                 <input id=${data.id} class="todo-daily-check" type="checkbox" ${data.done ? 'checked' : ''}/>
                 <label for=${data.id} ></label>
                 <p class="todo-title-p" data-field="title">${data.title}</p>
-                <span class="todo-remove-btn">Remove</span>
+                <span class="todo-remove-btn">❌</span>
             </div>
             <p class="todo-daily-description" data-field="description">${data.description || '&plus;'}</p>
         </div>`
