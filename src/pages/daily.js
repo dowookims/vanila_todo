@@ -13,7 +13,7 @@ export class Daily {
         this.$dom.innerHTML = this.html();
     }
     render($parent, todoData) {
-        if (todoData) {
+        if (Array.isArray(todoData) && todoData.length !== 0) {
             this.$dom.innerHTML += this.todoHtml(todoData);
             this.$innerDom = this.$dom.querySelector('.todo-today-hastodo');
             this.$openModalBtn = this.$dom.querySelector(".todo-add-btn");
@@ -32,6 +32,7 @@ export class Daily {
         this.$openModalBtn.addEventListener('click', () => {
             openModal();
         });
+
         this.$dom.addEventListener('click', (e) => {
             if (e.target.tagName === 'LABEL') {
                 e.target.parentNode.parentNode.classList.toggle('done');
@@ -65,14 +66,27 @@ export class Daily {
             
         }
         this.$todoDom.innerHTML += this.todoDom(data);
-        this.todoData = Array.isArray(this.todoData) ? this.todoData.push(data) : [data];
+        if (Array.isArray(this.todoData)) {
+            this.todoData.push(data)
+        } else {
+            this.todoData = [data];
+        }
     }
 
     remove(target) {
-        const id = target.getAttribute('for');
+        const id = target.parentNode.dataset.id;
         emitEvent(REMOVE_TODO, 'id', id);
         target.parentNode.parentNode.remove();
-        this.todoData.filter(todo => todo.id !== id);
+        this.todoData = this.todoData.filter(todo => todo.id !== id);
+        if (!Array.isArray(this.todoData) || this.todoData.length === 0) {
+            this.$innerDom.remove();
+            this.$dom.innerHTML += this.emptyTodoHtml();
+            this.$innerDom = this.$dom.querySelector('.empty-daily-todo');
+            this.$openModalBtn = this.$dom.querySelector(".high-light-text");
+            this.$openModalBtn.addEventListener('click', () => {
+                openModal();
+            });
+        }
     }
 
     emptyTodoHtml() {
@@ -101,7 +115,7 @@ export class Daily {
     todoDom(data) {
         return `
         <div class="todo-daily ${data.done ? 'done' : ''}">
-            <p class="todo-daily-title">
+            <p class="todo-daily-title" data-id=${data.id}>
                 <input id=${data.id} class="todo-daily-check" type="checkbox" ${data.done ? 'checked' : ''}/>
                 <label for=${data.id} ></label>
                 <span class="todo-title-span">${data.title}</span>

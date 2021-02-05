@@ -38,6 +38,7 @@ export default class Model {
         }
         todoData.push(data);
         this.saveTodayTodo(todoData);
+        return data;
     }
 
     getTodayTodo() {
@@ -47,7 +48,6 @@ export default class Model {
     }
 
     toggleTodo(id) {
-        console.info(id);
         let changedData;
         let todoData = this.getTodayTodo();
         const filteredTodo = todoData.filter(todo => {
@@ -73,8 +73,10 @@ export default class Model {
     }
 
     removeTodo(id) {
+        console.info(id);
+        let todoData = this.getTodayTodo();
         const filteredTodo = todoData.filter(todo => todo.id !== id);
         const TODAY_TODO_KEY = this.getTodayTodoKey();
-        localStorage.setItem(TODAY_TODO_KEY, JSON.stringify(data));
+        localStorage.setItem(TODAY_TODO_KEY, JSON.stringify(filteredTodo));
     }
 }

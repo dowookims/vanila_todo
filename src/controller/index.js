@@ -38,8 +38,8 @@ export default class Controller {
 
     _saveTodo(e) {
         const { data } = e.detail;
-        this.model.saveTodo(data);
-        this.view.updateTodo(data);
+        const savedData = this.model.saveTodo(data);
+        this.view.updateTodo(savedData);
     }
 
     _toggleTodo(e) {
@@ -49,6 +49,7 @@ export default class Controller {
 
     _removeTodo(e) {
         const { id } = e.detail;
+        console.info(e.detail);
         this.model.removeTodo(id);
     }
 }
