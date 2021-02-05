@@ -1,5 +1,5 @@
 import Modal from '../component/modal.js';
-import { ADD_USERNAME, NAME, OPEN_MODAL, REMOVE_TODO, SAVE_TODO, TOGGLE_TODO } from '../constant.js';
+import { ADD_USERNAME, EDIT_TODO, NAME, OPEN_MODAL, REMOVE_TODO, SAVE_TODO, TOGGLE_TODO } from '../constant.js';
 import View from '../view/view.js';
 
 export default class Controller {
@@ -25,6 +25,7 @@ export default class Controller {
         this.$app.addEventListener(SAVE_TODO, (e) => this._saveTodo(e));
         this.$app.addEventListener(TOGGLE_TODO, (e) => this._toggleTodo(e));
         this.$app.addEventListener(REMOVE_TODO, (e) => this._removeTodo(e));
+        this.$app.addEventListener(EDIT_TODO, (e) => this._editTodo(e));
     }
 
     _saveUserData(e) {
@@ -51,5 +52,10 @@ export default class Controller {
         const { id } = e.detail;
         console.info(e.detail);
         this.model.removeTodo(id);
+    }
+
+    _editTodo(e) {
+        const { data } = e.detail;
+        this.model.editTodo(data);
     }
 }

@@ -59,7 +59,6 @@ export default class Model {
         });
         filteredTodo.push(changedData);
         this.saveTodayTodo(filteredTodo);
-        console.info('qwe');
     };
 
     saveTodayTodo(data) {
@@ -73,10 +72,24 @@ export default class Model {
     }
 
     removeTodo(id) {
-        console.info(id);
         let todoData = this.getTodayTodo();
         const filteredTodo = todoData.filter(todo => todo.id !== id);
         const TODAY_TODO_KEY = this.getTodayTodoKey();
         localStorage.setItem(TODAY_TODO_KEY, JSON.stringify(filteredTodo));
+    }
+
+    editTodo(data) {
+        const { id, field, content } = data;
+        let changedData;
+        let todoData = this.getTodayTodo();
+        const filteredTodo = todoData.filter(todo => {
+            if (todo.id === id) {
+                changedData = todo;
+                changedData[field] = content;
+            }
+            return todo.id !== id
+        });
+        filteredTodo.push(changedData);
+        this.saveTodayTodo(filteredTodo);
     }
 }

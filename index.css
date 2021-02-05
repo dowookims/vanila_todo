@@ -11,6 +11,9 @@
     font-size: 18px;
     font-family: 'Noto Sans KR';
 }
+textarea {
+    resize: none;
+}
 h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
 }
@@ -260,10 +263,16 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     display: flex;
+    flex-direction: row;
     align-items: center;
     position: relative;
 }
-.todo-daily.done .todo-daily-title .todo-title-span {
+
+.todo-title-p {
+    cursor: pointer;
+}
+
+.todo-daily.done .todo-daily-title .todo-title-p {
     text-decoration:line-through;
     color: #ddd;
     transition: all 0.4s ease-in;
@@ -283,6 +292,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 2px solid #333;
     border-radius: 10px;
     margin-right: 0.75rem;
+    cursor: pointer;
 }
 
 
@@ -300,11 +310,13 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     font-size: 0.5rem;
     transform: trnaslateY(0.5rem);
+    cursor: pointer;
 }
 
 .todo-daily-description {
     font-size: 0.8rem;
     color: rgba(0, 0, 0, 0.23);
+    cursor: pointer;
 }
 
 .error {
@@ -323,6 +335,15 @@ h1, h2, h3, h4, h5, h6 {
     height: 100vh;
     background-color: #fff;
 }
+
+.editable-todo {
+    height: 1.75rem;
+    padding: 0.25rem;
+    overflow: hidden;
+    outline: none;
+    border: 2px solid #333;
+}
+
 @media screen and (max-width: 1200px) and (orientation: portrait) {
 
 }
