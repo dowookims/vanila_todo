@@ -9,4 +9,10 @@ class App {
     }
 }
 
-new App();
+const loading = document.createElement('div');
+loading.innerHTML = 'loading....';
+document.body.append(loading);
+window.onload = () => {
+    loading.remove();
+    new App();
+}
