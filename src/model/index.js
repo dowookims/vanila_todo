@@ -1,12 +1,20 @@
 import { NAME } from '../constant.js';
 
 export default class Model {
-    
     constructor() {
         const today = new Date();
-        this.today = [today.getMonth() + 1, today.getDate()];
-        this.todoData = this.getTodayTodo();
+        this.date = today;
+        this.setModelDate(this.date);
         this.nameData = this.loadData(NAME);
+    }
+
+    setModelDate(day) {
+        this.today = [day.getMonth() + 1, day.getDate()];
+        this.todoData = this.getTodayTodo();
+    }
+
+    getDate() {
+        return this.today;
     }
 
     loadData(key) {
@@ -91,5 +99,11 @@ export default class Model {
         });
         filteredTodo.push(changedData);
         this.saveTodayTodo(filteredTodo);
+    }
+
+    changeDate(direction) {
+        const [ _, date ] = this.today;
+        this.date.setDate(direction + date);
+        this.setModelDate(this.date);
     }
 }

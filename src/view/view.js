@@ -6,14 +6,16 @@ import Modal from '../component/modal.js';
 export default class View {
     constructor(username) {
         this.username = username;
-        this.preRender();
     }
     preRender() {
         this.$dom = document.createElement('main');
         this.header = new Header(this.username);
         this.page = this.page();
     }
-    render($parent, todoData) {
+
+    render($parent, todoData, date) {
+        this.date = date;
+        this.preRender();
         this.$parent = $parent;
         this.header.render($parent);
         this.page.render(this.$dom, todoData);
@@ -21,17 +23,23 @@ export default class View {
     }
     
     page() {
-        return this.username ? new Daily() : new InputUser();
+        return this.username ? new Daily(this.date) : new InputUser();
     }
 
     initDaily(username) {
         this.page.remove();
-        this.page = new Daily();
+        this.page = new Daily(this.date);
         this.header.changeWelcomeText(username);
         this.render(this.$parent);
     }
 
     updateTodo(data) {
         this.page.updateTodo(data);
+    }
+
+    changeDate(todoData, date) {
+        this.page.remove();
+        this.page.setDate(date);
+        this.page.render(this.$dom, todoData);
     }
 }

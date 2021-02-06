@@ -8,3 +8,4 @@ export const REMOVE_TODO = 'REMOVE_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 export const CHANGE_TEMPLATE = 'CHANGE_TEMPLATE';
 export const EDIT_USERNAME = 'EDIT_USERNAME';
+export const CHANGE_DATE = 'CHANGE_DATE';

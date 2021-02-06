@@ -71,6 +71,9 @@ export default class Todo {
 
         function emitChangeEvent (field) {
             const changedText = $textarea.value;
+            if (changedText.length === 0) {
+                return;
+            }
             emitEvent(EDIT_TODO, 'data', {
                 id,
                 field,

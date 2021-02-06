@@ -1,3 +1,4 @@
+import Loading from './component/loading.js';
 import Controller from './controller/index.js';
 import Model from './model/index.js';
 
@@ -9,10 +10,8 @@ class App {
     }
 }
 
-const loading = document.createElement('div');
-loading.className = 'loading';
-loading.innerHTML = 'loading....';
-document.body.append(loading);
+const loading = new Loading();
+loading.render(app);
 window.onload = () => {
     loading.remove();
     new App();

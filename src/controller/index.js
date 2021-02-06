@@ -1,5 +1,5 @@
 import Modal from '../component/modal.js';
-import { ADD_USERNAME, EDIT_TODO, EDIT_USERNAME, NAME, OPEN_MODAL, REMOVE_TODO, SAVE_TODO, TOGGLE_TODO } from '../constant.js';
+import { ADD_USERNAME, CHANGE_DATE, EDIT_TODO, EDIT_USERNAME, NAME, OPEN_MODAL, REMOVE_TODO, SAVE_TODO, TOGGLE_TODO } from '../constant.js';
 import View from '../view/view.js';
 
 export default class Controller {
@@ -14,7 +14,7 @@ export default class Controller {
 
     render() {
         const todayTodo = this.model.getTodayTodo();
-        this.view.render(this.$app, todayTodo);
+        this.view.render(this.$app, todayTodo, this.model.getDate());
         this.modal.render(this.$app);
         this.bindEvent();
     }
@@ -27,6 +27,7 @@ export default class Controller {
         this.$app.addEventListener(TOGGLE_TODO, (e) => this._toggleTodo(e));
         this.$app.addEventListener(REMOVE_TODO, (e) => this._removeTodo(e));
         this.$app.addEventListener(EDIT_TODO, (e) => this._editTodo(e));
+        this.$app.addEventListener(CHANGE_DATE, (e) => this._changeDate(e));
     }
 
     _saveUserData(e) {
@@ -61,5 +62,12 @@ export default class Controller {
     _editTodo(e) {
         const { data } = e.detail;
         this.model.editTodo(data);
+    }
+
+    _changeDate(e) {
+        this.model.changeDate(e.detail.data);
+        const todayTodo = this.model.getTodayTodo();
+        const date = this.model.getDate()
+        this.view.changeDate(todayTodo, date);
     }
 }
