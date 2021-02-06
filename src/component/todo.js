@@ -37,7 +37,7 @@ export default class Todo {
                 <input id=${this.data.id} class="todo-daily-check" type="checkbox" ${this.data.done ? 'checked' : ''}/>
                 <label for=${this.data.id} ></label>
                 <p class="todo-title-p" data-field="title">${this.data.title}</p>
-                <span class="todo-remove-btn">❌</span>
+                <span class="todo-remove-btn">✖️</span>
             </div>
             <p class="todo-daily-description" data-field="description">${this.data.description || '&plus;'}</p>
         `
@@ -54,9 +54,18 @@ export default class Todo {
         this.$dom.remove();
     }
 
+    removeDom()  {
+        this.$dom.remove();
+    }
+
     toggleTodo(target) {
-        target.parentNode.parentNode.classList.toggle('done');
+        console.info('toggle');
+        this.$dom.classList.toggle('done');
         emitEvent(TOGGLE_TODO, 'id', target.getAttribute('for'));
+        emitParent(TOGGLE_TODO, this.$dom.parentNode.parentNode, {
+            data: this.data,
+            dom: this.$dom
+        });
     }
 
     todoEditable(target) {
@@ -68,6 +77,7 @@ export default class Todo {
         $textarea.className = 'editable-todo';
         target.append($textarea)
         $textarea.focus();
+        const that = this;
 
         function emitChangeEvent (field) {
             const changedText = $textarea.value;

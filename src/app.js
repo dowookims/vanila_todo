@@ -1,4 +1,3 @@
-import Loading from './component/loading.js';
 import Controller from './controller/index.js';
 import Model from './model/index.js';
 
