@@ -39,6 +39,7 @@ export class TodoTemplate {
             </div>
             <div class="todo-hastodo-body">
             </div>
+            <div class="todo-donetodo-body"></div>
         `
     }
 

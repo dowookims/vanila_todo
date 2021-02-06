@@ -54,7 +54,7 @@ export default class Todo {
         this.$dom.remove();
     }
 
-    toggleTodo() {
+    toggleTodo(target) {
         target.parentNode.parentNode.classList.toggle('done');
         emitEvent(TOGGLE_TODO, 'id', target.getAttribute('for'));
     }

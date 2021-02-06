@@ -305,6 +305,27 @@ h1, h2, h3, h4, h5, h6 {
     content: "\2713";
 }
 
+.user-name {
+    cursor: pointer;
+}
+
+.edit-username {
+    cursor: pointer;
+    display: inline-block;
+    background-color: #333;
+    outline: none;
+    color: #fff;
+    height: 1.25rem;
+    vertical-align: bottom;
+    resize: none;
+    overflow-y: hidden;
+}
+
+.edit-username:focus {
+    outline: none;
+    border: none;
+}
+
 .todo-remove-btn {
     position: absolute;
     right: 0;
