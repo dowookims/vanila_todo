@@ -10,8 +10,7 @@ class App {
     }
 }
 
-const loading = new Loading();
-loading.render(app);
+const loading = document.querySelector('.loading');
 window.onload = () => {
     loading.remove();
     new App();
