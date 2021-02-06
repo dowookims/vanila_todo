@@ -1,7 +1,6 @@
 import { InputUser } from '../pages/index.js'
 import Header from '../component/header.js';
 import { Daily } from '../pages/daily.js';
-import Modal from '../component/modal.js';
 
 export default class View {
     constructor(username) {
@@ -10,7 +9,7 @@ export default class View {
     preRender() {
         this.$dom = document.createElement('main');
         this.header = new Header(this.username);
-        this.page = this.page();
+        this.page = this.pages();
     }
 
     render($parent, todoData, date) {
@@ -22,15 +21,16 @@ export default class View {
         $parent.append(this.$dom);
     }
     
-    page() {
+    pages() {
         return this.username ? new Daily(this.date) : new InputUser();
     }
 
-    initDaily(username) {
+    initDaily(username, date) {
         this.page.remove();
-        this.page = new Daily(this.date);
-        this.header.changeWelcomeText(username);
-        this.render(this.$parent);
+        this.page = new Daily(date);
+        this.username = username;
+        this.header.remove();
+        this.render(this.$parent, [], date);
     }
 
     updateTodo(data) {

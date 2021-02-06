@@ -21,11 +21,13 @@ export default class Header {
     }
 
     bindEvent() {
-        this.$username.addEventListener('click', (e) => this.editUserName(e.target));
+        if (this.$username) {
+            this.$username.addEventListener('click', (e) => this.editUserName(e.target));
+        }
     }
 
-    changeWelcomeText(text) {
-        this.$p.innerText = `어서오세요, ${text}님`;
+    remove() {
+        this.$dom.remove();
     }
 
     html() {

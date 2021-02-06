@@ -32,7 +32,8 @@ export default class Controller {
 
     _saveUserData(e) {
         this.model.saveData(NAME, e.detail.username);
-        this.view.initDaily(e.detail.username);
+        const date = this.model.getDate()
+        this.view.initDaily(e.detail.username, date);
     }
 
     _editUserName(e) {
