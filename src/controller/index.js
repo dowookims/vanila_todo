@@ -50,7 +50,6 @@ export default class Controller {
 
     _removeTodo(e) {
         const { id } = e.detail;
-        console.info(e.detail);
         this.model.removeTodo(id);
     }
 
